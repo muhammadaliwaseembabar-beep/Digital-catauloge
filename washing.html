@@ -1,0 +1,616 @@
+<!DOCTYPE html>
+<html lang="e<n">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Eurasia Catalouge</title>
+</head>
+<script>
+function toggleChat() {
+
+    const chat = document.getElementById("aiChat");
+
+    if (chat.style.display === "flex") {
+        chat.style.display = "none";
+    } else {
+        chat.style.display = "flex";
+    }
+}
+
+
+function quickMessage(message) {
+
+    document.getElementById("userInput").value = message;
+
+    sendMessage();
+}
+
+
+function sendMessage() {
+
+    const input = document.getElementById("userInput");
+
+    const message = input.value.trim();
+
+    if (message === "") return;
+
+    const messages = document.getElementById("aiMessages");
+
+
+    // User message
+
+    messages.innerHTML += `
+        <div class="user-message">
+            ${message}
+        </div>
+    `;
+
+
+    input.value = "";
+
+
+    // Bot response
+
+    setTimeout(function() {
+
+        let reply = "";
+
+
+        const text = message.toLowerCase();
+
+
+        if (
+            text.includes("product") ||
+            text.includes("products")
+        ) {
+
+            reply = `
+            🛍️ <b>Eurasia Products</b><br><br>
+
+            🔹 Electric Iron<br>
+            🔹 Washing Machine<br>
+            🔹 Skimming Machine<br>
+            🔹 Exhaust Fan<br><br>
+
+            Kisi product ki details chahiye?
+            `;
+        }
+
+
+        else if (
+            text.includes("detail") ||
+            text.includes("specification")
+        ) {
+
+            reply = `
+            📋 Product details ke liye
+            catalogue mein apna product select karein.
+            <br><br>
+            Aap mujhe product ka naam bhi bata sakte hain.
+            `;
+        }
+
+
+        else if (
+            text.includes("order") ||
+            text.includes("cart")
+        ) {
+
+            reply = `
+            🛒 Order karne ke liye product select karein
+            aur <b>Add to Cart</b> button press karein.
+            <br><br>
+            Phir WhatsApp par order complete kar sakte hain.
+            `;
+        }
+
+
+        else if (
+            text.includes("whatsapp") ||
+            text.includes("contact")
+        ) {
+
+            reply = `
+            📱 WhatsApp par order karne ke liye
+            neeche button press karein.
+            <br><br>
+
+            <a href="https://wa.me/923016677186"
+               target="_blank"
+               style="
+               display:inline-block;
+               background:#b00000;
+               color:white;
+               padding:10px 15px;
+               border-radius:7px;
+               text-decoration:none;">
+               📱 WhatsApp Order
+            </a>
+            `;
+        }
+
+
+        else if (
+            text.includes("hello") ||
+            text.includes("hi") ||
+            text.includes("salam")
+        ) {
+
+            reply = `
+            👋 Wa Alaikum Assalam!
+            <br><br>
+            Welcome to <b>Eurasia</b>.
+            Main products aur orders mein aapki help kar sakta hoon.
+            `;
+        }
+
+
+        else {
+
+            reply = `
+            🤖 Main aapki help karne ke liye yahan hoon.
+            <br><br>
+
+            Aap ye pooch sakte hain:
+            <br>
+            • Products<br>
+            • Product Details<br>
+            • Order<br>
+            • WhatsApp
+            `;
+        }
+
+
+        messages.innerHTML += `
+            <div class="bot-message">
+                ${reply}
+            </div>
+        `;
+
+
+        messages.scrollTop = messages.scrollHeight;
+
+    }, 600);
+}
+</script>
+<style>
+/* ===== DARK MAROON & RED ANIMATED BACKGROUND ===== */
+html {
+    scroll-behavior: smooth;
+}
+body {
+    margin: 0;
+    min-height: 100vh;
+    background:
+        radial-gradient(circle at 15% 20%, rgba(180, 0, 0, 0.25), transparent 30%),
+        radial-gradient(circle at 85% 75%, rgba(255, 0, 0, 0.18), transparent 30%),
+        linear-gradient(135deg, #080000, #240006, #3b0008, #100000);
+    background-size: 200% 200%;
+    animation: maroonMove 12s ease-in-out infinite;
+    overflow-x: hidden;
+}
+
+/* Animated red glow */
+body::before {
+    content: "";
+    position: fixed;
+    width: 450px;
+    height: 450px;
+    top: -150px;
+    left: -150px;
+    border-radius: 50%;
+    background: radial-gradient(
+        circle,
+        rgba(255, 0, 0, 0.35),
+        rgba(120, 0, 0, 0.12),
+        transparent 70%
+    );
+    filter: blur(30px);
+    animation: glowMove 8s ease-in-out infinite alternate;
+    pointer-events: none;
+}
+
+/* Second glow */
+body::after {
+    content: "";
+    position: fixed;
+    width: 500px;
+    height: 500px;
+    right: -180px;
+    bottom: -180px;
+    border-radius: 50%;
+    background: radial-gradient(
+        circle,
+        rgba(255, 20, 20, 0.30),
+        rgba(100, 0, 0, 0.12),
+        transparent 70%
+    );
+    filter: blur(35px);
+    animation: glowMove2 10s ease-in-out infinite alternate;
+    pointer-events: none;
+}
+
+/* Background movement */
+@keyframes maroonMove {
+    0% {
+        background-position: 0% 50%;
+    }
+
+    50% {
+        background-position: 100% 50%;
+    }
+
+    100% {
+        background-position: 0% 50%;
+    }
+}
+
+/* Top glow animation */
+@keyframes glowMove {
+    0% {
+        transform: translate(0, 0) scale(1);
+    }
+
+    100% {
+        transform: translate(250px, 180px) scale(1.3);
+    }
+}
+
+/* Bottom glow animation */
+@keyframes glowMove2 {
+    0% {
+        transform: translate(0, 0) scale(1);
+    }
+
+    100% {
+        transform: translate(-220px, -180px) scale(1.25);
+    }
+}
+.header {
+    position: fixed;
+    top: 0;
+    left: 0;
+
+    width: 100%;
+    height: 90px;
+
+    z-index: 1000;
+
+    height: 90px;
+    width: 100%;
+    position: sticky;
+
+    display: flex;
+    align-items: center;
+
+    background: rgba(30, 0, 5, 0.85);
+    border-bottom: 1px solid rgba(255, 0, 0, 0.4);
+
+    box-shadow: 0 5px 25px rgba(255, 0, 0, 0.15);
+}
+
+/* Logo LEFT */
+.logo {
+    position: absolute;
+    left: 30px;
+
+    display: flex;
+    align-items: center;
+}
+
+.logo img {
+    width: 105px;
+    height: 65px;
+    object-fit: contain;
+}
+
+/* Company Name CENTER */
+.company-name {
+    position: absolute;
+    left: 50%;
+    transform: translateX(-50%);
+
+    text-align: center;
+    color: white;
+}
+
+.company-name h1 {
+    margin: 0;
+    font-size: 40px;
+    letter-spacing: 5px;
+    font-weight: bold;
+}
+
+.company-name p {
+    font-family: 'Franklin Gothic Medium', 'Arial Narrow', Arial, sans-serif;
+    margin: 3px 0 0;
+    font-size: 15px;
+    letter-spacing: 3px;
+    color: #f3eaea;
+}
+
+.nav
+{
+    padding: 20px;
+    margin: 10px;
+}
+.nav-options
+{
+    background-color: #f3eaea;
+    padding: 10px;
+    border: 10px;
+    margin: 5px;
+    text-align: center;
+}
+ .navbar {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    gap: 50px;
+    padding: 15px 30px;
+    box-shadow: 0 5px 20px rgba(255, 0, 0, 0.15);
+}
+
+.navbar a {
+    position: relative;
+
+    color: rgb(3, 0, 0);
+    text-decoration: none;
+    font-size: 16px;
+    font-weight: 600;
+    padding: 8px 5px;
+    transition: 0.3s ease;
+    font-family: 'Franklin Gothic Medium', 'Arial Narrow', Arial, sans-serif;
+
+}
+
+/* Hover color */
+.navbar a:hover {
+    color: #ff3333;
+}
+
+/* Red underline animation */
+.navbar a::after {
+    content: "";
+
+    position: absolute;
+    left: 50%;
+    bottom: 0;
+
+    width: 0;
+    height: 2px;
+
+    background: #ff1a1a;
+
+    transform: translateX(-50%);
+    transition: 0.3s ease;
+}
+
+.navbar a:hover::after {
+    width: 100%;
+}
+.contact-btn {
+    display: inline-block;
+    margin: 12px 0 20px;
+    padding: 12px 30px;
+
+    background: #d60000;
+    color: white;
+
+    text-decoration: none;
+    font-size: 15px;
+    font-weight: bold;
+
+    border-radius: 7px;
+
+    box-shadow: 0 0 15px rgba(255, 0, 0, 0.35);
+    transition: 0.3s ease;
+}
+
+.contact-btn:hover {
+    background: #ff1a1a;
+    transform: translateY(-3px);
+    box-shadow: 0 0 25px rgba(255, 0, 0, 0.65);
+}
+.footer
+{
+    padding: 20px;
+    margin: 30px;
+    text-align: center;
+}
+.footer h2
+{
+    font: bold;
+    font-family: 'Franklin Gothic Medium', 'Arial Narrow', Arial, sans-serif;
+    color: #f3eaea;
+}
+.footer p
+{
+    font-family: 'Franklin Gothic Medium', 'Arial Narrow', Arial, sans-serif;
+    font-weight: bold;
+    color: #f3eaea;
+}
+.ir
+{
+    padding: 10px;
+    text-align: center;
+
+}
+.ir h1
+{
+    text-align: center;
+    font: bold;
+    font-size: 50px;
+    font-family: 'Franklin Gothic Medium', 'Arial Narrow', Arial, sans-serif;
+    color: antiquewhite;
+}
+.home-text
+{
+    padding: 10px;
+
+}
+.home-section {
+    width: 90%;
+    max-width: 1200px;
+    min-height: 500px;
+    margin: 40px auto;
+
+    display: flex;
+    align-items: center;
+    
+}
+.home-text
+{
+    
+    width: 500%;
+}
+/* LEFT SIDE */
+.home-text h1 {
+    font-family: 'Franklin Gothic Medium', 'Arial Narrow', Arial, sans-serif;
+    font-weight: bold;
+    font-size: 550%;
+    color: white;
+}
+/* RIGHT SIDE */
+.home-image {
+    width: 37%;
+
+}
+
+.home-image img {
+    width: 350px;
+    height: 500px;
+}
+.add-cart-btn {
+    display: flex;
+    width: fit-content;
+    margin: 20px auto;
+    
+    align-items: center;
+    justify-content: center;
+    gap: 10px;
+
+    background: linear-gradient(135deg, #e60000, #9b0000);
+    color: white;
+    padding: 13px 28px;
+    border-radius: 8px;
+    font-size: 16px;
+    font-weight: bold;
+    text-decoration: none;
+
+    box-shadow: 0 5px 15px rgba(150, 0, 0, 0.35);
+    transition: 0.3s;
+}   
+.feature
+{
+    align-items: center;
+    width: 1300px;
+}
+.feature h1
+{
+    font: bold;
+    font-family: 'Franklin Gothic Medium', 'Arial Narrow', Arial, sans-serif;
+    text-align: center;
+    color: antiquewhite;
+    font-size: 60px;
+}
+.feature ul
+{
+    text-align: center;
+}
+.feature li
+{
+    text-align: center;
+    font: bold;
+    font-family: 'Trebuchet MS', 'Lucida Sans Unicode', 'Lucida Grande', 'Lucida Sans', Arial, sans-serif;
+    font-weight: bold;
+    color: antiquewhite;
+}
+</style>
+<body>
+    <header class="header">
+
+    <!-- Left Side Logo -->
+    <div class="logo">
+        <img src="ChatGPT Image Aug 30, 2026, 11_01_13 PM.png" alt="Eurasia Logo">
+    </div>
+
+    <!-- Center Company Name -->
+    <div class="company-name">
+        <h1>EURASIA</h1>
+        <p>HOME APPLIANCES</p>
+    </div>
+
+</header>
+<div class="ir">
+    <h1>
+        Eurasia Washing Meachine
+    </h1>
+</div>
+<div class="home-section">
+
+    <div class="home-text">
+        <h1>Clean Cloth<br>
+            Every Wash</h1>
+       
+    </div>
+
+    <div class="home-image">
+        <img src="washing meachine.png" alt="Home Appliances">
+    </div>
+
+</div>
+<div class="feature">
+    <h1>Features</h1>
+    <ul>
+        <h3><li>High Quality</li></h3>
+        <h3><li>Durable fitting</li></h3>
+        <h3><li>2000 RPMs</li></h3>
+        <h3><li>Heavy-Duty body</li></h3>
+        <h3><li>Premium Quality</li></h3>
+        <h3><li>Energy Efficient Performance</li></h3>
+        <h3><li>Durable & Long-Lasting Build</li></h3>
+        <h3><li>Suitable for Home & Professional Use</li></h3>
+    </ul>
+</div>
+     <a href="https://wa.me/923016677186?text=Hello%20Eurasia,%20I%20want%20to%20order%20this%20product."
+   target="_blank"
+   class="add-cart-btn">
+    🛒 <span>Add to Cart</span>
+</a>
+            <div class="nav-options">
+                <nav class="navbar">
+        <a href="Iron.html">Iron</a>
+        <a href="Exaust.html">Exaust Fan</a>
+        <a href="Madhani.html">Barqi Madhani</a>
+        <a href="Washing.html">Washing Meachine</a>
+
+                </nav>
+            </div>
+                </section>
+                <footer class="footer">
+
+    <h2>EURASIA</h2>
+
+    <p>Home Appliances</p>
+
+    <div class="footer-line"></div>
+
+    <p class="phone">
+        WhatsApp: 03016677186
+    </p>
+
+    <a href="https://wa.me/923016677186" 
+       class="contact-btn" 
+       target="_blank">
+        Contact on WhatsApp
+    </a>
+
+    <p class="created">
+        Created By <span>BR Online Services</span>
+    </p>
+
+</footer>
+
+</body>
+</html>
